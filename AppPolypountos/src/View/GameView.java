@@ -3,7 +3,11 @@ package View;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics;
+import java.awt.GraphicsEnvironment;
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 
@@ -26,6 +30,8 @@ public class GameView {
 	
 	public static int screenWidth;
 	public static int screenHeight;
+	
+	public static Font font;
 
 	public GameView(GameModele game, Controller controller) throws IOException {
 		this.game = game;
@@ -41,7 +47,23 @@ public class GameView {
 
 		frame = canvas.createFrame(d);
 		frame.setResizable(false);
-		frame.setSize(frame.getToolkit().getScreenSize());
+		//frame.setSize(frame.getToolkit().getScreenSize());
+		
+		System.out.println("  - Load font");
+		String fontPath = "/Users/albin/eclipse-workspace/AppEmissionPolypountos/AppPolypountos/resources/font/Roboto-Medium.ttf";
+		try {
+			// Load the font file
+			font = Font.createFont(Font.TRUETYPE_FONT, new File(fontPath));
+			
+			font = new Font("Arial", Font.PLAIN, 24);
+					
+			// Register the font with the graphics environment
+			GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+			ge.registerFont(font);
+
+		} catch (FontFormatException | IOException e) {
+			e.printStackTrace();
+		}
 		
 		System.out.println("  - Init the view...");
 		init_view();
