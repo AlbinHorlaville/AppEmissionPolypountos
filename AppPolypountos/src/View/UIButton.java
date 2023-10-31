@@ -1,19 +1,25 @@
 package View;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+
+import javax.swing.JLabel;
 
 public class UIButton extends UIComponent {
 
 	private Color backgroundColor;
 	private Color foregroundColor;
+	
+	UILabel label;
 
 	// Implémente un bouton de taille, label et couleur adaptable
-	public UIButton(int x, int y) {
-		super(x, y, 100, 100);
+	public UIButton(int x, int y, String txt) {
+		super(x, y, 100, 200);
 		foregroundColor = Color.blue;
-		backgroundColor = Color.red;
+		backgroundColor = Color.blue;
+		label = new UILabel(y, y, txt, GameView.font, Color.black);
 	}
 
 	// Le texte est centré sur le bouton
@@ -22,9 +28,13 @@ public class UIButton extends UIComponent {
 		
 		//g.setFont();
 
-		g.setColor(foregroundColor);
-		g.fillRect(getPositionX(), getPositionY(), getWidth(), getHeight());
-/*
+		g.setColor(backgroundColor);
+
+		g.fillRoundRect(getPositionX(), getPositionY(), getWidth(), getHeight(), 40, 40);
+		
+		g.setFont(GameView.font);
+		g.setColor(Color.black);
+
 		if (label.getText().contains("\n")) {
 			int marginY = 0;
 			for (String line : label.getText().split("\n")) {
@@ -43,9 +53,7 @@ public class UIButton extends UIComponent {
 			int centerX = this.getPositionX() + (getWidth() - labelWidth) / 2;
 			int centerY = this.getPositionY() + rectHeight - labelHeight;
 			g.drawString(label.getText(), centerX, centerY);
-		}*/
-
-		// g.drawString(label.getText(), centerX, centerY);
+		}
 	}
 
 	void drawString(Graphics g, String text, int x, int y) {

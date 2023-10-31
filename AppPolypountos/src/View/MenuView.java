@@ -5,6 +5,9 @@ import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+import javax.swing.JLayer;
+import java.awt.BorderLayout;
+
 import Modele.Player;
 
 public class MenuView extends View{
@@ -13,12 +16,13 @@ public class MenuView extends View{
 	
 	public MenuView(GameView gv) {
 		super(gv);
-		b1 = new UIButton(GameView.screenWidth/2, GameView.screenHeight/2);
+		b1 = new UIButton(GameView.screenWidth/2 - 100, GameView.screenHeight/2 - 50, "Player 1");
 		
 		b1.setUIComponentListener(new UIComponentListener() {
 
 			@Override
 			public void onComponentClicked(int x, int y) {
+				System.out.println("test1");
 			}
 
 			@Override
@@ -32,6 +36,7 @@ public class MenuView extends View{
 			}
 
 			public void onComponentPressed(int x, int y) {
+				System.out.println("test2");
 			}
 
 			@Override
@@ -39,7 +44,6 @@ public class MenuView extends View{
 				// TODO Auto-generated method stub
 
 			}
-
 		});
 		
 		addComponent(b1);
